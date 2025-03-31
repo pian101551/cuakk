@@ -2,60 +2,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Hari Raya!</title>
+    <title>Selamat Hari Raya</title>
     <style>
         body {
+            background-color: black;
+            color: white;
             text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
             overflow: hidden;
         }
-        h1 {
-            color: #228B22;
-        }
-        .balloons {
-            position: absolute;
-            width: 100%;
+        .container {
+            position: relative;
             height: 100vh;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .envelope {
+            width: 150px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .letter {
+            width: 130px;
+            height: 180px;
+            background-color: white;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            transform: translateY(100%);
+            transition: transform 1s ease-in-out;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .envelope:hover .letter {
+            transform: translateY(0);
+        }
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
         }
-        .balloon {
+        .stars {
             position: absolute;
-            width: 50px;
-            height: 70px;
-            background-color: red;
-            border-radius: 50%;
-            bottom: -100px;
-            animation: floatUp 5s infinite ease-in-out;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(white, transparent);
+            animation: twinkle 2s infinite;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh); opacity: 1; }
-            100% { transform: translateY(-10vh); opacity: 0; }
-        }
-        .qr-code {
-            margin-top: 20px;
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
-    <h1>Selamat Hari Raya!</h1>
-    <p>Scan QR code di bawah untuk menerima duit raya 🎁</p>
-    <div class="qr-code">
-        <img src="your-qr-code.png" alt="QR Code" width="200">
+    <div class="container">
+        <div class="stars"></div>
+        <h1>Selamat Hari Raya Aidilfitri!</h1>
+        <div class="envelope">
+            <div class="letter">
+                <p>Selamat Hari Raya! Maaf Zahir & Batin</p>
+                <p><img src="/mnt/data/file-KZnrB5Wcsp9hQ19JHzGkiJ" alt="QR Duit Raya" width="100"></p>
+            </div>
+        </div>
+        <div class="fireworks"></div>
     </div>
-    <div class="balloons" id="balloonContainer"></div>
-    <script>
-        function createBalloon() {
-            const balloon = document.createElement('div');
-            balloon.className = 'balloon';
-            balloon.style.left = Math.random() * 100 + 'vw';
-            balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
-            balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            document.getElementById('balloonContainer').appendChild(balloon);
-            setTimeout(() => balloon.remove(), 5000);
-        }
-        setInterval(createBalloon, 500);
-    </script>
 </body>
 </html>
